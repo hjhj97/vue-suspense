@@ -1,0 +1,44 @@
+<script setup>
+import {ref} from 'vue'
+
+const data = [
+{id : 0, title: 'This is first'},
+ {id : 1, title: 'This is second'},
+ {id : 2, title: 'This is third'}]
+const list = ref(null)
+
+const fetchData = async() => {
+  await new Promise((resolve, reject) => setTimeout(() => resolve, 3000))
+  list.value = data;
+}
+await fetchData();
+
+    
+</script>
+
+<template>
+  <div class="container">
+    <ul>
+      <li v-for="item in list" :key="item.id">{{item.title}}</li>
+    </ul>
+  </div>
+</template>
+
+<style scoped>
+.container{
+  background-color: #dedede;
+  border-radius: 10px;
+  padding: 10px;
+}
+ul{
+  display: flex;
+  flex-direction: column;
+  gap : 12px;
+}
+li{
+  list-style-type: none;
+  height: 30px;
+}
+</style>
+
+
